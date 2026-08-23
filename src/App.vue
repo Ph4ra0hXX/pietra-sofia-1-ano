@@ -84,7 +84,7 @@
   letter-spacing: -2px;
   paint-order: stroke;
   stroke: #fff9e8;
-  stroke-width: 3px;
+  stroke-width: 12px;
 }
 
 /* Uma granulação quase imperceptível tira o aspecto excessivamente digital. */
