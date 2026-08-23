@@ -108,7 +108,7 @@
   }
 
   .name-bone__text {
-    font-size: 62px;
+    font-size: 80px;
   }
 }
 </style>
