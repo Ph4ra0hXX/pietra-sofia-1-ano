@@ -55,8 +55,23 @@
   top: clamp(12px, 3vw, 32px);
   left: 50%;
   width: min(88vw, 760px);
-  transform: translateX(-50%) rotate(-2deg);
+  animation: bone-shake 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  transform: translateX(-50%);
+  transform-box: border-box;
+  transform-origin: 50% 50%;
   filter: drop-shadow(0 12px 0 rgb(77 32 12 / 18%));
+  will-change: transform;
+}
+
+@keyframes bone-shake {
+  0%,
+  100% {
+    transform: translateX(-50%) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateX(-50%) rotate(1deg);
+  }
 }
 
 .name-bone__shape {
@@ -109,6 +124,12 @@
 
   .name-bone__text {
     font-size: 80px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .name-bone {
+    animation: none;
   }
 }
 </style>
