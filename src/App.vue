@@ -541,7 +541,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  width: min(82vw, 740px);
+  width: min(72vw, 620px);
   margin: clamp(40px, 5vw, 60px) auto 0;
   pointer-events: none;
 }
@@ -700,7 +700,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   }
 
   .party-characters {
-    width: min(340px, 82vw);
+    width: min(300px, 72vw);
     margin-top: 34px;
   }
 
