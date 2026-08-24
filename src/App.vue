@@ -252,7 +252,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
 .falling-leaves {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 10;
   overflow: hidden;
   pointer-events: none;
 }
