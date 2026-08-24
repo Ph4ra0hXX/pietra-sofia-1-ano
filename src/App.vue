@@ -416,7 +416,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   align-items: center;
   column-gap: clamp(8px, 3.5vw, 40px);
   margin-top: clamp(-8px, -1.2vw, 4px);
-  color: #9fca3d;
+  color: #fff;
   font-family: "Pietra Sofia", cursive;
   text-align: center;
   text-transform: uppercase;
@@ -442,7 +442,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   width: min(100%, 242px);
   height: clamp(3px, 0.65vw, 6px);
   border-radius: 999px;
-  background: #000000;
+  background: #fff;
   content: "";
 }
 
@@ -452,7 +452,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   line-height: 0.74;
   letter-spacing: 0;
   paint-order: stroke;
-  -webkit-text-stroke: clamp(4px, 0.75vw, 7px) #000000;
+  -webkit-text-stroke: clamp(4px, 0.75vw, 7px) #fff;
   text-shadow: 0 4px 0 rgb(0 0 0 / 18%);
 }
 
@@ -460,9 +460,9 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: stretch;
-  gap: clamp(12px, 2.1vw, 22px);
-  width: min(100%, 820px);
-  margin: clamp(16px, 2.6vw, 30px) auto 0;
+  gap: clamp(12px, 2vw, 20px);
+  width: min(96vw, 960px);
+  margin: clamp(16px, 2.6vw, 28px) auto 0;
 }
 
 .party-actions__button {
@@ -470,29 +470,28 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   position: relative;
   display: grid;
   place-items: center;
-  min-width: 0;
-  min-height: clamp(70px, 8.8vw, 94px);
-  padding: clamp(13px, 1.9vw, 18px) clamp(14px, 2.3vw, 24px)
-    clamp(16px, 2.1vw, 22px);
-  color: #ed008e;
-  font-family: "Pietra Sofia", cursive;
-  font-size: clamp(22px, 2.7vw, 32px);
-  line-height: 0.92;
-  letter-spacing: 0;
+  min-width: min(100%, 280px);
+  min-height: clamp(50px, 6vw, 64px);
+  padding: 12px clamp(14px, 2vw, 22px) 13px;
+  color: #ffffff;
+  font-family: "Pietra Sofia Title", cursive;
+  font-size: clamp(18px, 2.1vw, 25px);
+  font-weight: normal;
+  line-height: 1;
+  letter-spacing: 0.4px;
   text-align: center;
   text-transform: uppercase;
   overflow-wrap: anywhere;
-  background: #fff;
-  border: 4px solid #080808;
-  border-radius: 8px;
+  background: #ed008e;
+  border: 0;
+  border-radius: 10px;
   box-shadow:
-    0 9px 0 #080808,
-    0 14px 0 rgb(0 0 0 / 14%);
+    0 6px 0 #9e005f,
+    0 8px 0 rgb(0 0 0 / 10%);
   cursor: pointer;
-  paint-order: stroke;
-  -webkit-text-stroke: clamp(3px, 0.12vw, 1.4px) #080808;
   transform: translateY(0);
   transition:
+    background-color 140ms ease,
     box-shadow 140ms ease,
     transform 140ms ease,
     filter 140ms ease;
@@ -505,22 +504,23 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
 }
 
 .party-actions__button:hover {
-  filter: brightness(1.02);
+  background: #ff159e;
+  filter: brightness(1.01);
   box-shadow:
-    0 6px 0 #080808,
-    0 10px 0 rgb(0 0 0 / 12%);
-  transform: translateY(3px);
+    0 4px 0 #9e005f,
+    0 6px 0 rgb(0 0 0 / 9%);
+  transform: translateY(2px);
 }
 
 .party-actions__button:active {
   box-shadow:
-    0 2px 0 #080808,
-    0 4px 0 rgb(0 0 0 / 10%);
-  transform: translateY(7px);
+    0 1px 0 #9e005f,
+    0 2px 0 rgb(0 0 0 / 7%);
+  transform: translateY(5px);
 }
 
 .party-actions__button:focus-visible {
-  outline: 4px solid #ed008e;
+  outline: 4px solid #ffffff;
   outline-offset: 4px;
 }
 
@@ -616,17 +616,17 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   .party-actions {
     grid-template-columns: 1fr;
     gap: 10px;
-    width: min(390px, 88vw);
+    width: min(440px, 90vw);
     margin-top: 14px;
   }
 
   .party-actions__button {
-    min-height: 64px;
-    padding: 12px 18px 16px;
-    font-size: clamp(21px, 5.8vw, 29px);
+    min-height: 60px;
+    padding: 12px 16px 13px;
+    font-size: clamp(18px, 5.2vw, 24px);
     box-shadow:
-      0 8px 0 #080808,
-      0 12px 0 rgb(0 0 0 / 13%);
+      0 6px 0 #9e005f,
+      0 8px 0 rgb(0 0 0 / 10%);
   }
 }
 
