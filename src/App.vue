@@ -1,9 +1,115 @@
+<script setup>
+const leafColors = [
+  ['#78b942', '#2e6532'],
+  ['#59a83a', '#214f2b'],
+  ['#9ccb46', '#456f31'],
+  ['#4f9d39', '#1f4d2a'],
+  ['#73b842', '#2e6330'],
+  ['#add24d', '#567733'],
+  ['#63ad3d', '#27582d'],
+  ['#8fc642', '#3b692d'],
+]
+
+const leafPositions = [
+  '3%',
+  '88%',
+  '46%',
+  '15%',
+  '71%',
+  '32%',
+  '96%',
+  '57%',
+  '8%',
+  '79%',
+  '39%',
+  '63%',
+]
+
+const leafFallDuration = 32
+
+const leaves = Array.from({ length: leafPositions.length }, (_, index) => {
+  const [color, accent] = leafColors[index % leafColors.length]
+  const direction = index % 2 === 0 ? 1 : -1
+  const phase = leafFallDuration * (index / leafPositions.length)
+
+  return {
+    x: leafPositions[index],
+    delay: `-${phase.toFixed(2)}s`,
+    duration: `${leafFallDuration}s`,
+    size: `${28 + (index % 7) * 3}px`,
+    mid: `${direction * (44 + (index % 4) * 14)}px`,
+    end: `${direction * (10 + (index % 3) * 8)}px`,
+    spin: `${-46 + ((index * 31) % 96)}deg`,
+    color,
+    accent,
+  }
+})
+</script>
+
 <template>
   <main
     class="birthday-background"
     aria-label="Fundo decorativo laranja com sementes pretas"
   >
     <div class="birthday-background__texture" aria-hidden="true"></div>
+    <div class="falling-leaves" aria-hidden="true">
+      <span
+        v-for="(leaf, index) in leaves"
+        :key="index"
+        class="falling-leaf"
+        :style="{
+          '--x': leaf.x,
+          '--delay': leaf.delay,
+          '--duration': leaf.duration,
+          '--size': leaf.size,
+          '--mid': leaf.mid,
+          '--end': leaf.end,
+          '--spin': leaf.spin,
+          '--leaf-color': leaf.color,
+          '--leaf-accent': leaf.accent,
+        }"
+      >
+        <svg
+          class="falling-leaf__graphic"
+          viewBox="0 0 64 96"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            class="falling-leaf__stem"
+            d="M31 75C30 84 27 90 21 94"
+          />
+          <path
+            class="falling-leaf__body"
+            d="M33 5C49 13 59 30 58 47C57 67 44 82 31 86C18 80 6 66 6 48C6 30 17 13 33 5Z"
+          />
+          <path
+            class="falling-leaf__shine"
+            d="M24 18C15 27 11 39 12 50C13 62 20 72 29 78C21 69 17 57 18 45C19 34 22 25 24 18Z"
+          />
+          <path
+            class="falling-leaf__vein"
+            d="M33 12C31 30 30 50 31 78"
+          />
+          <path
+            class="falling-leaf__vein falling-leaf__vein--left"
+            d="M31 39C23 35 17 30 13 24"
+          />
+          <path
+            class="falling-leaf__vein falling-leaf__vein--left"
+            d="M30 55C22 53 16 49 11 43"
+          />
+          <path
+            class="falling-leaf__vein falling-leaf__vein--right"
+            d="M32 34C42 30 49 24 53 17"
+          />
+          <path
+            class="falling-leaf__vein falling-leaf__vein--right"
+            d="M31 58C42 55 49 49 54 41"
+          />
+        </svg>
+      </span>
+    </div>
 
     <div class="name-bone" role="img" aria-label="Osso com o nome Pietra Sofia">
       <svg
@@ -58,9 +164,124 @@
   transform: rotate(-0.4deg) scale(1.02);
 }
 
+.falling-leaves {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.falling-leaf {
+  position: absolute;
+  display: block;
+  top: -110px;
+  left: var(--x);
+  width: min(var(--size), 10vw);
+  opacity: 0;
+  transform: translate3d(0, -18vh, 0);
+  animation: leaf-fall var(--duration) linear infinite;
+  animation-delay: var(--delay);
+  will-change: transform, opacity;
+}
+
+.falling-leaf__graphic {
+  display: block;
+  width: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 7px 5px rgb(73 31 14 / 18%));
+  transform: rotate(var(--spin));
+  transform-origin: 50% 50%;
+  animation: leaf-flutter 2.8s ease-in-out infinite alternate;
+  animation-delay: var(--delay);
+  will-change: transform;
+}
+
+.falling-leaf:nth-child(3n) .falling-leaf__graphic {
+  animation-duration: 3.5s;
+}
+
+.falling-leaf:nth-child(4n) .falling-leaf__graphic {
+  animation-duration: 2.3s;
+}
+
+.falling-leaf__body {
+  fill: var(--leaf-color);
+  stroke: #111111;
+  stroke-linejoin: round;
+  stroke-width: 2.8;
+}
+
+.falling-leaf__shine {
+  fill: rgb(255 255 255 / 20%);
+}
+
+.falling-leaf__stem,
+.falling-leaf__vein {
+  fill: none;
+  stroke: var(--leaf-accent);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3.2;
+}
+
+.falling-leaf__stem {
+  stroke: #193b20;
+  stroke-width: 4;
+}
+
+.falling-leaf__vein--left,
+.falling-leaf__vein--right {
+  stroke-width: 2.4;
+  opacity: 0.65;
+}
+
+@keyframes leaf-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -22vh, 0);
+  }
+
+  2%,
+  98% {
+    opacity: 0.95;
+  }
+
+  24% {
+    transform: translate3d(var(--mid), 24vh, 0);
+  }
+
+  50% {
+    transform: translate3d(0, 55vh, 0);
+  }
+
+  76% {
+    transform: translate3d(var(--mid), 84vh, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--end), 122vh, 0);
+  }
+}
+
+@keyframes leaf-flutter {
+  0% {
+    transform: rotate(var(--spin)) rotateY(0deg);
+  }
+
+  50% {
+    transform: rotate(18deg) rotateY(42deg);
+  }
+
+  100% {
+    transform: rotate(-24deg) rotateY(-24deg);
+  }
+}
+
 .name-bone {
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   top: clamp(12px, 3vw, 32px);
   left: 50%;
   width: min(88vw, 760px);
@@ -139,6 +360,10 @@
 @media (prefers-reduced-motion: reduce) {
   .name-bone {
     animation: none;
+  }
+
+  .falling-leaf {
+    animation-duration: 34s;
   }
 }
 </style>
