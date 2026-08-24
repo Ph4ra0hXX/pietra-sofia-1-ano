@@ -417,7 +417,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   min-width: 0;
   gap: clamp(8px, 1.8vw, 13px);
   justify-items: center;
-  font-size: 22px;
+  font-size: 30px;
   line-height: 0.9;
   letter-spacing: 0;
   overflow-wrap: anywhere;
