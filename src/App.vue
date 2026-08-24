@@ -44,6 +44,36 @@ const leaves = Array.from({ length: leafPositions.length }, (_, index) => {
     accent,
   }
 })
+
+const grassColors = [
+  ['#7cc142', '#2f7d33'],
+  ['#5baa37', '#23652b'],
+  ['#9ccc46', '#44782f'],
+  ['#438f35', '#195423'],
+  ['#6dbb3c', '#2b7430'],
+  ['#a7d653', '#527f34'],
+]
+
+const grassBladeCount = 72
+
+const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
+  const [color, shadow] = grassColors[index % grassColors.length]
+  const row = index % 4
+
+  return {
+    x: `${((index / (grassBladeCount - 1)) * 100).toFixed(2)}%`,
+    bottom: `${-18 + row * 6}px`,
+    depth: `${1 + row}`,
+    width: `${7 + ((index * 5) % 7)}px`,
+    height: `${62 + row * 16 + ((index * 19) % 64)}px`,
+    lean: `${-12 + ((index * 17) % 25)}deg`,
+    sway: `${7 + ((index * 11) % 9)}deg`,
+    duration: `${2.25 + ((index * 7) % 10) / 10}s`,
+    delay: `-${((index * 13) % 28) / 10}s`,
+    color,
+    shadow,
+  }
+})
 </script>
 
 <template>
@@ -137,6 +167,29 @@ const leaves = Array.from({ length: leafPositions.length }, (_, index) => {
         </svg>
       </div>
     </div>
+
+    <footer class="grass-footer" aria-hidden="true">
+      <div class="grass-footer__field">
+        <span
+          v-for="(blade, index) in grassBlades"
+          :key="index"
+          class="grass-footer__blade"
+          :style="{
+            '--grass-x': blade.x,
+            '--grass-bottom': blade.bottom,
+            '--grass-depth': blade.depth,
+            '--grass-width': blade.width,
+            '--grass-height': blade.height,
+            '--grass-lean': blade.lean,
+            '--grass-sway': blade.sway,
+            '--grass-duration': blade.duration,
+            '--grass-delay': blade.delay,
+            '--grass-color': blade.color,
+            '--grass-shadow': blade.shadow,
+          }"
+        ></span>
+      </div>
+    </footer>
   </main>
 </template>
 
@@ -337,6 +390,60 @@ const leaves = Array.from({ length: leafPositions.length }, (_, index) => {
   stroke-width: 12px;
 }
 
+.grass-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+  height: clamp(128px, 24vh, 230px);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.grass-footer__field {
+  position: absolute;
+  inset: 0 -2% 0;
+  transform-origin: bottom center;
+}
+
+.grass-footer__blade {
+  position: absolute;
+  bottom: var(--grass-bottom);
+  left: var(--grass-x);
+  z-index: var(--grass-depth);
+  display: block;
+  width: var(--grass-width);
+  height: var(--grass-height);
+  background: var(--grass-color);
+  border-radius: 999px 999px 0 0;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  transform: translateX(-50%) rotate(var(--grass-lean));
+  transform-origin: 50% 100%;
+  animation: grass-blade-sway var(--grass-duration) ease-in-out infinite alternate;
+  animation-delay: var(--grass-delay);
+  will-change: transform;
+}
+
+.grass-footer__blade:nth-child(2n) {
+  background: var(--grass-shadow);
+}
+
+.grass-footer__blade:nth-child(3n) {
+  width: calc(var(--grass-width) + 3px);
+  opacity: 0.92;
+}
+
+@keyframes grass-blade-sway {
+  0% {
+    transform: translateX(-50%) rotate(calc(var(--grass-lean) - var(--grass-sway)));
+  }
+
+  100% {
+    transform: translateX(-50%) rotate(calc(var(--grass-lean) + var(--grass-sway)));
+  }
+}
+
 /* Uma granulação quase imperceptível tira o aspecto excessivamente digital. */
 .birthday-background::after {
   position: absolute;
@@ -353,6 +460,10 @@ const leaves = Array.from({ length: leafPositions.length }, (_, index) => {
     background-size: 255px 255px;
   }
 
+  .grass-footer {
+    height: clamp(122px, 21vh, 190px);
+  }
+
   .name-bone {
     width: 94vw;
   }
@@ -365,6 +476,10 @@ const leaves = Array.from({ length: leafPositions.length }, (_, index) => {
 @media (prefers-reduced-motion: reduce) {
   .falling-leaf {
     animation-duration: 34s;
+  }
+
+  .grass-footer__blade {
+    animation-duration: 8s;
   }
 }
 </style>
