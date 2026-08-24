@@ -191,6 +191,19 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
           <span class="party-actions__button-label"> Dicas de presentes </span>
         </button>
       </div>
+
+      <div class="party-characters" aria-hidden="true">
+        <img
+          class="party-characters__image party-characters__image--dino"
+          src="/dino.png"
+          alt=""
+        />
+        <img
+          class="party-characters__image party-characters__image--pedrita"
+          src="/pedrita.png"
+          alt=""
+        />
+      </div>
     </section>
 
     <footer class="grass-footer" aria-hidden="true">
@@ -524,6 +537,43 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   outline-offset: 4px;
 }
 
+.party-characters {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: min(92vw, 880px);
+  margin: clamp(14px, 2.5vw, 24px) auto 0;
+  pointer-events: none;
+}
+
+.party-characters__image {
+  display: block;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  filter:
+    drop-shadow(3px 0 0 #fff)
+    drop-shadow(-3px 0 0 #fff)
+    drop-shadow(0 3px 0 #fff)
+    drop-shadow(0 -3px 0 #fff)
+    drop-shadow(2px 2px 0 #fff)
+    drop-shadow(-2px 2px 0 #fff)
+    drop-shadow(2px -2px 0 #fff)
+    drop-shadow(-2px -2px 0 #fff)
+    drop-shadow(0 9px 0 rgb(76 31 13 / 15%));
+}
+
+.party-characters__image--dino {
+  width: clamp(112px, 17vw, 196px);
+  margin-left: clamp(2px, 4vw, 46px);
+}
+
+.party-characters__image--pedrita {
+  width: clamp(106px, 15.5vw, 178px);
+  margin-right: clamp(2px, 4vw, 46px);
+  transform: translateY(-12px);
+}
+
 .grass-footer {
   position: absolute;
   right: 0;
@@ -627,6 +677,22 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
     box-shadow:
       0 6px 0 #9e005f,
       0 8px 0 rgb(0 0 0 / 10%);
+  }
+
+  .party-characters {
+    width: min(420px, 92vw);
+    margin-top: 10px;
+  }
+
+  .party-characters__image--dino {
+    width: clamp(76px, 25vw, 112px);
+    margin-left: 0;
+  }
+
+  .party-characters__image--pedrita {
+    width: clamp(72px, 23vw, 104px);
+    margin-right: 0;
+    transform: translateY(-8px);
   }
 }
 
