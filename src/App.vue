@@ -541,8 +541,8 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  width: min(92vw, 880px);
-  margin: clamp(14px, 2.5vw, 24px) auto 0;
+  width: min(82vw, 740px);
+  margin: clamp(40px, 5vw, 60px) auto 0;
   pointer-events: none;
 }
 
@@ -571,14 +571,14 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
 
 .party-characters__image--dino {
   width: clamp(112px, 17vw, 196px);
-  margin-left: clamp(2px, 4vw, 46px);
+  margin-left: clamp(0px, 2.5vw, 28px);
 }
 
 .party-characters__image--pedrita {
   --character-y: -12px;
 
   width: clamp(106px, 15.5vw, 178px);
-  margin-right: clamp(2px, 4vw, 46px);
+  margin-right: clamp(0px, 2.5vw, 28px);
   animation-delay: -2.3s;
 }
 
@@ -700,8 +700,8 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   }
 
   .party-characters {
-    width: min(420px, 92vw);
-    margin-top: 10px;
+    width: min(340px, 82vw);
+    margin-top: 34px;
   }
 
   .party-characters__image--dino {
