@@ -381,7 +381,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
 }
 
 .name-bone__text {
-  fill: #9fca3d;
+  fill: #ed008e;
   font-family: "Pietra Sofia Title", cursive;
   font-size: 70px;
   font-weight: normal;
@@ -428,7 +428,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
 }
 
 .event-details__number {
-  color: #9fca3d;
+  color: #ed008e;
   font-size: clamp(82px, 16vw, 164px);
   line-height: 0.74;
   letter-spacing: 0;
