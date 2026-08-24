@@ -1,36 +1,36 @@
 <script setup>
 const leafColors = [
-  ['#78b942', '#2e6532'],
-  ['#59a83a', '#214f2b'],
-  ['#9ccb46', '#456f31'],
-  ['#4f9d39', '#1f4d2a'],
-  ['#73b842', '#2e6330'],
-  ['#add24d', '#567733'],
-  ['#63ad3d', '#27582d'],
-  ['#8fc642', '#3b692d'],
-]
+  ["#78b942", "#2e6532"],
+  ["#59a83a", "#214f2b"],
+  ["#9ccb46", "#456f31"],
+  ["#4f9d39", "#1f4d2a"],
+  ["#73b842", "#2e6330"],
+  ["#add24d", "#567733"],
+  ["#63ad3d", "#27582d"],
+  ["#8fc642", "#3b692d"],
+];
 
 const leafPositions = [
-  '3%',
-  '88%',
-  '46%',
-  '15%',
-  '71%',
-  '32%',
-  '96%',
-  '57%',
-  '8%',
-  '79%',
-  '39%',
-  '63%',
-]
+  "3%",
+  "88%",
+  "46%",
+  "15%",
+  "71%",
+  "32%",
+  "96%",
+  "57%",
+  "8%",
+  "79%",
+  "39%",
+  "63%",
+];
 
-const leafFallDuration = 32
+const leafFallDuration = 32;
 
 const leaves = Array.from({ length: leafPositions.length }, (_, index) => {
-  const [color, accent] = leafColors[index % leafColors.length]
-  const direction = index % 2 === 0 ? 1 : -1
-  const phase = leafFallDuration * (index / leafPositions.length)
+  const [color, accent] = leafColors[index % leafColors.length];
+  const direction = index % 2 === 0 ? 1 : -1;
+  const phase = leafFallDuration * (index / leafPositions.length);
 
   return {
     x: leafPositions[index],
@@ -42,23 +42,23 @@ const leaves = Array.from({ length: leafPositions.length }, (_, index) => {
     spin: `${-46 + ((index * 31) % 96)}deg`,
     color,
     accent,
-  }
-})
+  };
+});
 
 const grassColors = [
-  ['#7cc142', '#2f7d33'],
-  ['#5baa37', '#23652b'],
-  ['#9ccc46', '#44782f'],
-  ['#438f35', '#195423'],
-  ['#6dbb3c', '#2b7430'],
-  ['#a7d653', '#527f34'],
-]
+  ["#7cc142", "#2f7d33"],
+  ["#5baa37", "#23652b"],
+  ["#9ccc46", "#44782f"],
+  ["#438f35", "#195423"],
+  ["#6dbb3c", "#2b7430"],
+  ["#a7d653", "#527f34"],
+];
 
-const grassBladeCount = 72
+const grassBladeCount = 72;
 
 const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
-  const [color, shadow] = grassColors[index % grassColors.length]
-  const row = index % 4
+  const [color, shadow] = grassColors[index % grassColors.length];
+  const row = index % 4;
 
   return {
     x: `${((index / (grassBladeCount - 1)) * 100).toFixed(2)}%`,
@@ -72,8 +72,8 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
     delay: `-${((index * 13) % 28) / 10}s`,
     color,
     shadow,
-  }
-})
+  };
+});
 </script>
 
 <template>
@@ -105,10 +105,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
         >
-          <path
-            class="falling-leaf__stem"
-            d="M31 75C30 84 27 90 21 94"
-          />
+          <path class="falling-leaf__stem" d="M31 75C30 84 27 90 21 94" />
           <path
             class="falling-leaf__body"
             d="M33 5C49 13 59 30 58 47C57 67 44 82 31 86C18 80 6 66 6 48C6 30 17 13 33 5Z"
@@ -117,10 +114,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
             class="falling-leaf__shine"
             d="M24 18C15 27 11 39 12 50C13 62 20 72 29 78C21 69 17 57 18 45C19 34 22 25 24 18Z"
           />
-          <path
-            class="falling-leaf__vein"
-            d="M33 12C31 30 30 50 31 78"
-          />
+          <path class="falling-leaf__vein" d="M33 12C31 30 30 50 31 78" />
           <path
             class="falling-leaf__vein falling-leaf__vein--left"
             d="M31 39C23 35 17 30 13 24"
@@ -141,32 +135,44 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
       </span>
     </div>
 
-    <div class="name-bone" role="img" aria-label="Osso com o nome Pietra Sofia">
-      <div class="name-bone__motion">
-        <svg
-          class="name-bone__shape"
-          viewBox="0 0 760 300"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <path
-            class="name-bone__shadow"
-            d="M105 59C67 38 19 65 21 109C22 132 35 148 55 158C34 170 22 189 23 212C25 253 71 276 106 256C123 246 131 231 139 214C151 190 169 184 199 184H561C591 184 609 190 621 214C629 231 637 246 654 256C689 276 735 253 737 212C738 189 726 170 705 158C725 148 738 132 739 109C741 65 693 38 655 59C637 69 628 85 620 102C609 124 590 130 561 130H199C170 130 151 124 140 102C132 85 123 69 105 59Z"
-          />
-          <path
-            class="name-bone__body"
-            d="M105 47C67 26 19 53 21 97C22 120 35 136 55 146C34 158 22 177 23 200C25 241 71 264 106 244C123 234 131 219 139 202C151 178 169 172 199 172H561C591 172 609 178 621 202C629 219 637 234 654 244C689 264 735 241 737 200C738 177 726 158 705 146C725 136 738 120 739 97C741 53 693 26 655 47C637 57 628 73 620 90C609 112 590 118 561 118H199C170 118 151 112 140 90C132 73 123 57 105 47Z"
-          />
-          <text class="name-bone__text" x="380" y="133" text-anchor="middle">
-            1 ANO
-          </text>
+    <section class="party-header" aria-label="Informacoes da festa">
+      <div
+        class="name-bone"
+        role="img"
+        aria-label="Osso com o nome Pietra Sofia"
+      >
+        <div class="name-bone__motion">
+          <svg
+            class="name-bone__shape"
+            viewBox="0 0 760 300"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              class="name-bone__shadow"
+              d="M105 59C67 38 19 65 21 109C22 132 35 148 55 158C34 170 22 189 23 212C25 253 71 276 106 256C123 246 131 231 139 214C151 190 169 184 199 184H561C591 184 609 190 621 214C629 231 637 246 654 256C689 276 735 253 737 212C738 189 726 170 705 158C725 148 738 132 739 109C741 65 693 38 655 59C637 69 628 85 620 102C609 124 590 130 561 130H199C170 130 151 124 140 102C132 85 123 69 105 59Z"
+            />
+            <path
+              class="name-bone__body"
+              d="M105 47C67 26 19 53 21 97C22 120 35 136 55 146C34 158 22 177 23 200C25 241 71 264 106 244C123 234 131 219 139 202C151 178 169 172 199 172H561C591 172 609 178 621 202C629 219 637 234 654 244C689 264 735 241 737 200C738 177 726 158 705 146C725 136 738 120 739 97C741 53 693 26 655 47C637 57 628 73 620 90C609 112 590 118 561 118H199C170 118 151 112 140 90C132 73 123 57 105 47Z"
+            />
+            <text class="name-bone__text" x="380" y="133" text-anchor="middle">
+              1 ANO
+            </text>
 
-          <text class="name-bone__text" x="380" y="203" text-anchor="middle">
-            PIETRA SOFIA
-          </text>
-        </svg>
+            <text class="name-bone__text" x="380" y="203" text-anchor="middle">
+              PIETRA SOFIA
+            </text>
+          </svg>
+        </div>
       </div>
-    </div>
+
+      <div class="event-details" aria-label="Domingo, dia 24, as 18 horas">
+        <span class="event-details__item">DOMINGO</span>
+        <span class="event-details__number">24</span>
+        <span class="event-details__item">18 HORAS</span>
+      </div>
+    </section>
 
     <footer class="grass-footer" aria-hidden="true">
       <div class="grass-footer__field">
@@ -334,13 +340,16 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   }
 }
 
-.name-bone {
+.party-header {
   position: absolute;
   z-index: 3;
   top: clamp(12px, 3vw, 32px);
   left: 50%;
   width: min(88vw, 760px);
   transform: translateX(-50%);
+}
+
+.name-bone {
   filter: drop-shadow(0 12px 0 rgb(77 32 12 / 18%));
 }
 
@@ -384,10 +393,56 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   font-family: "Pietra Sofia", cursive;
   font-size: 70px;
   font-weight: normal;
-  letter-spacing: -2px;
+  letter-spacing: 0;
   paint-order: stroke;
   stroke: #000000;
   stroke-width: 12px;
+}
+
+.event-details {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: clamp(8px, 3.5vw, 40px);
+  margin-top: clamp(-8px, -1.2vw, 4px);
+  color: #9fca3d;
+  font-family: "Pietra Sofia", cursive;
+  text-align: center;
+  text-transform: uppercase;
+  filter: drop-shadow(0 5px 0 rgb(0 0 0 / 16%));
+}
+
+.event-details__item {
+  display: grid;
+  min-width: 0;
+  gap: clamp(8px, 1.8vw, 13px);
+  justify-items: center;
+  font-size: clamp(20px, 5vw, 54px);
+  line-height: 0.9;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+  paint-order: stroke;
+  -webkit-text-stroke: clamp(1px, 0.35vw, 3px) #000000;
+}
+
+.event-details__item::before,
+.event-details__item::after {
+  display: block;
+  width: min(100%, 242px);
+  height: clamp(3px, 0.65vw, 6px);
+  border-radius: 999px;
+  background: #000000;
+  content: "";
+}
+
+.event-details__number {
+  color: #9fca3d;
+  font-size: clamp(82px, 16vw, 164px);
+  line-height: 0.74;
+  letter-spacing: 0;
+  paint-order: stroke;
+  -webkit-text-stroke: clamp(3px, 0.75vw, 7px) #000000;
+  text-shadow: 0 4px 0 rgb(0 0 0 / 18%);
 }
 
 .grass-footer {
@@ -420,7 +475,8 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   clip-path: polygon(50% 0, 100% 100%, 0 100%);
   transform: translateX(-50%) rotate(var(--grass-lean));
   transform-origin: 50% 100%;
-  animation: grass-blade-sway var(--grass-duration) ease-in-out infinite alternate;
+  animation: grass-blade-sway var(--grass-duration) ease-in-out infinite
+    alternate;
   animation-delay: var(--grass-delay);
   will-change: transform;
 }
@@ -436,11 +492,13 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
 
 @keyframes grass-blade-sway {
   0% {
-    transform: translateX(-50%) rotate(calc(var(--grass-lean) - var(--grass-sway)));
+    transform: translateX(-50%)
+      rotate(calc(var(--grass-lean) - var(--grass-sway)));
   }
 
   100% {
-    transform: translateX(-50%) rotate(calc(var(--grass-lean) + var(--grass-sway)));
+    transform: translateX(-50%)
+      rotate(calc(var(--grass-lean) + var(--grass-sway)));
   }
 }
 
@@ -464,12 +522,16 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
     height: clamp(122px, 21vh, 190px);
   }
 
-  .name-bone {
+  .party-header {
     width: 94vw;
   }
 
   .name-bone__text {
     font-size: 80px;
+  }
+
+  .event-details {
+    column-gap: 7px;
   }
 }
 
