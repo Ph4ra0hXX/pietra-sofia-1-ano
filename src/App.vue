@@ -200,14 +200,6 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
 </template>
 
 <style scoped>
-@font-face {
-  font-family: "Pietra Sofia";
-  src: url("/font.ttf") format("truetype");
-  font-display: swap;
-  font-style: normal;
-  font-weight: normal;
-}
-
 .birthday-background {
   position: relative;
   min-height: 100svh;
@@ -219,7 +211,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
 .birthday-background__texture {
   position: absolute;
   inset: -45px;
-  background-image: url("/watermelon-pattern.svg");
+  background-image: url("./assets/watermelon-pattern.svg");
   background-position: center top;
   background-size: 310px 310px;
   transform: rotate(-0.4deg) scale(1.02);
@@ -390,7 +382,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
 
 .name-bone__text {
   fill: #9fca3d;
-  font-family: "Pietra Sofia", cursive;
+  font-family: "Pietra Sofia Title", cursive;
   font-size: 70px;
   font-weight: normal;
   letter-spacing: 0;

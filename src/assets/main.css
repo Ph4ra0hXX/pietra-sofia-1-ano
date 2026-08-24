@@ -1,5 +1,21 @@
 @import './base.css';
 
+@font-face {
+  font-family: "Pietra Sofia";
+  src: url("./font.ttf") format("truetype");
+  font-display: block;
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Pietra Sofia Title";
+  src: url("./2font.ttf") format("truetype");
+  font-display: block;
+  font-style: normal;
+  font-weight: normal;
+}
+
 #app {
   width: 100%;
   min-height: 100%;
