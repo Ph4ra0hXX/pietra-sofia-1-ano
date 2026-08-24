@@ -547,6 +547,8 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
 }
 
 .party-characters__image {
+  --character-y: 0px;
+
   display: block;
   height: auto;
   object-fit: contain;
@@ -561,6 +563,10 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
     drop-shadow(2px -2px 0 #fff)
     drop-shadow(-2px -2px 0 #fff)
     drop-shadow(0 9px 0 rgb(76 31 13 / 15%));
+  transform: translateY(var(--character-y));
+  transform-origin: 50% 70%;
+  animation: character-shake 4.6s ease-in-out infinite;
+  will-change: transform;
 }
 
 .party-characters__image--dino {
@@ -569,9 +575,23 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
 }
 
 .party-characters__image--pedrita {
+  --character-y: -12px;
+
   width: clamp(106px, 15.5vw, 178px);
   margin-right: clamp(2px, 4vw, 46px);
-  transform: translateY(-12px);
+  animation-delay: -2.3s;
+}
+
+@keyframes character-shake {
+  0%,
+  100% {
+    transform: translate3d(0, var(--character-y), 0) rotate(-1.1deg);
+  }
+
+  50% {
+    transform: translate3d(0, calc(var(--character-y) + 2px), 0)
+      rotate(1.1deg);
+  }
 }
 
 .grass-footer {
@@ -690,9 +710,10 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   }
 
   .party-characters__image--pedrita {
+    --character-y: -8px;
+
     width: clamp(72px, 23vw, 104px);
     margin-right: 0;
-    transform: translateY(-8px);
   }
 }
 
