@@ -422,7 +422,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   letter-spacing: 0;
   overflow-wrap: anywhere;
   paint-order: stroke;
-  -webkit-text-stroke: clamp(1px, 0.35vw, 3px) #000000;
+  -webkit-text-stroke: clamp(4px, 0.35vw, 3px) #000000;
 }
 
 .event-details__item::before,
@@ -441,7 +441,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   line-height: 0.74;
   letter-spacing: 0;
   paint-order: stroke;
-  -webkit-text-stroke: clamp(3px, 0.75vw, 7px) #000000;
+  -webkit-text-stroke: clamp(4px, 0.75vw, 7px) #000000;
   text-shadow: 0 4px 0 rgb(0 0 0 / 18%);
 }
 
