@@ -112,28 +112,30 @@ const leaves = Array.from({ length: leafPositions.length }, (_, index) => {
     </div>
 
     <div class="name-bone" role="img" aria-label="Osso com o nome Pietra Sofia">
-      <svg
-        class="name-bone__shape"
-        viewBox="0 0 760 300"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <path
-          class="name-bone__shadow"
-          d="M105 59C67 38 19 65 21 109C22 132 35 148 55 158C34 170 22 189 23 212C25 253 71 276 106 256C123 246 131 231 139 214C151 190 169 184 199 184H561C591 184 609 190 621 214C629 231 637 246 654 256C689 276 735 253 737 212C738 189 726 170 705 158C725 148 738 132 739 109C741 65 693 38 655 59C637 69 628 85 620 102C609 124 590 130 561 130H199C170 130 151 124 140 102C132 85 123 69 105 59Z"
-        />
-        <path
-          class="name-bone__body"
-          d="M105 47C67 26 19 53 21 97C22 120 35 136 55 146C34 158 22 177 23 200C25 241 71 264 106 244C123 234 131 219 139 202C151 178 169 172 199 172H561C591 172 609 178 621 202C629 219 637 234 654 244C689 264 735 241 737 200C738 177 726 158 705 146C725 136 738 120 739 97C741 53 693 26 655 47C637 57 628 73 620 90C609 112 590 118 561 118H199C170 118 151 112 140 90C132 73 123 57 105 47Z"
-        />
-        <text class="name-bone__text" x="380" y="133" text-anchor="middle">
-          1 ANO
-        </text>
+      <div class="name-bone__motion">
+        <svg
+          class="name-bone__shape"
+          viewBox="0 0 760 300"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            class="name-bone__shadow"
+            d="M105 59C67 38 19 65 21 109C22 132 35 148 55 158C34 170 22 189 23 212C25 253 71 276 106 256C123 246 131 231 139 214C151 190 169 184 199 184H561C591 184 609 190 621 214C629 231 637 246 654 256C689 276 735 253 737 212C738 189 726 170 705 158C725 148 738 132 739 109C741 65 693 38 655 59C637 69 628 85 620 102C609 124 590 130 561 130H199C170 130 151 124 140 102C132 85 123 69 105 59Z"
+          />
+          <path
+            class="name-bone__body"
+            d="M105 47C67 26 19 53 21 97C22 120 35 136 55 146C34 158 22 177 23 200C25 241 71 264 106 244C123 234 131 219 139 202C151 178 169 172 199 172H561C591 172 609 178 621 202C629 219 637 234 654 244C689 264 735 241 737 200C738 177 726 158 705 146C725 136 738 120 739 97C741 53 693 26 655 47C637 57 628 73 620 90C609 112 590 118 561 118H199C170 118 151 112 140 90C132 73 123 57 105 47Z"
+          />
+          <text class="name-bone__text" x="380" y="133" text-anchor="middle">
+            1 ANO
+          </text>
 
-        <text class="name-bone__text" x="380" y="203" text-anchor="middle">
-          PIETRA SOFIA
-        </text>
-      </svg>
+          <text class="name-bone__text" x="380" y="203" text-anchor="middle">
+            PIETRA SOFIA
+          </text>
+        </svg>
+      </div>
     </div>
   </main>
 </template>
@@ -285,22 +287,25 @@ const leaves = Array.from({ length: leafPositions.length }, (_, index) => {
   top: clamp(12px, 3vw, 32px);
   left: 50%;
   width: min(88vw, 760px);
-  animation: bone-shake 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
   transform: translateX(-50%);
-  transform-box: border-box;
-  transform-origin: 50% 50%;
   filter: drop-shadow(0 12px 0 rgb(77 32 12 / 18%));
+}
+
+.name-bone__motion {
+  animation: bone-shake 4.6s ease-in-out infinite;
+  display: block;
+  transform-origin: 50% 50%;
   will-change: transform;
 }
 
 @keyframes bone-shake {
   0%,
   100% {
-    transform: translateX(-50%) rotate(-1deg);
+    transform: translate3d(0, 0, 0) rotate(-1.1deg);
   }
 
   50% {
-    transform: translateX(-50%) rotate(1deg);
+    transform: translate3d(0, 2px, 0) rotate(1.1deg);
   }
 }
 
@@ -358,10 +363,6 @@ const leaves = Array.from({ length: leafPositions.length }, (_, index) => {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .name-bone {
-    animation: none;
-  }
-
   .falling-leaf {
     animation-duration: 34s;
   }
