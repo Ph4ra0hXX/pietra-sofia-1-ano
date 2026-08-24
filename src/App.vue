@@ -406,7 +406,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   font-weight: normal;
   letter-spacing: 0;
   paint-order: stroke;
-  stroke: #000000;
+  stroke: #fff;
   stroke-width: 12px;
 }
 
