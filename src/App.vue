@@ -167,10 +167,29 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
         </div>
       </div>
 
-      <div class="event-details" aria-label="Domingo, dia 24, as 18 horas">
+      <div
+        class="event-details"
+        aria-label="Outubro, dia 04, as 14 horas e 30 minutos"
+      >
         <span class="event-details__item">Outubro </span>
         <span class="event-details__number">04</span>
         <span class="event-details__item">às 14:30</span>
+      </div>
+
+      <div class="party-actions" aria-label="Acoes da festa">
+        <button class="party-actions__button" type="button">
+          <span class="party-actions__button-label">
+            Confirmar presen&ccedil;a
+          </span>
+        </button>
+        <button class="party-actions__button" type="button">
+          <span class="party-actions__button-label">
+            Localiza&ccedil;&atilde;o da festa
+          </span>
+        </button>
+        <button class="party-actions__button" type="button">
+          <span class="party-actions__button-label"> Dicas de presentes </span>
+        </button>
       </div>
     </section>
 
@@ -437,6 +456,74 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   text-shadow: 0 4px 0 rgb(0 0 0 / 18%);
 }
 
+.party-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(12px, 2.1vw, 22px);
+  width: min(100%, 820px);
+  margin: clamp(16px, 2.6vw, 30px) auto 0;
+}
+
+.party-actions__button {
+  appearance: none;
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: clamp(70px, 8.8vw, 94px);
+  padding: clamp(13px, 1.9vw, 18px) clamp(14px, 2.3vw, 24px)
+    clamp(16px, 2.1vw, 22px);
+  color: #ed008e;
+  font-family: "Pietra Sofia", cursive;
+  font-size: clamp(22px, 2.7vw, 32px);
+  line-height: 0.92;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+  background: #fff;
+  border: 4px solid #080808;
+  border-radius: 8px;
+  box-shadow:
+    0 9px 0 #080808,
+    0 14px 0 rgb(0 0 0 / 14%);
+  cursor: pointer;
+  paint-order: stroke;
+  -webkit-text-stroke: clamp(3px, 0.12vw, 1.4px) #080808;
+  transform: translateY(0);
+  transition:
+    box-shadow 140ms ease,
+    transform 140ms ease,
+    filter 140ms ease;
+}
+
+.party-actions__button-label {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.party-actions__button:hover {
+  filter: brightness(1.02);
+  box-shadow:
+    0 6px 0 #080808,
+    0 10px 0 rgb(0 0 0 / 12%);
+  transform: translateY(3px);
+}
+
+.party-actions__button:active {
+  box-shadow:
+    0 2px 0 #080808,
+    0 4px 0 rgb(0 0 0 / 10%);
+  transform: translateY(7px);
+}
+
+.party-actions__button:focus-visible {
+  outline: 4px solid #ed008e;
+  outline-offset: 4px;
+}
+
 .grass-footer {
   position: absolute;
   right: 0;
@@ -524,6 +611,22 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
 
   .event-details {
     column-gap: 7px;
+  }
+
+  .party-actions {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    width: min(390px, 88vw);
+    margin-top: 14px;
+  }
+
+  .party-actions__button {
+    min-height: 64px;
+    padding: 12px 18px 16px;
+    font-size: clamp(21px, 5.8vw, 29px);
+    box-shadow:
+      0 8px 0 #080808,
+      0 12px 0 rgb(0 0 0 / 13%);
   }
 }
 
