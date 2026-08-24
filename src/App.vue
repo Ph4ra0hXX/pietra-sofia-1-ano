@@ -168,9 +168,9 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
       </div>
 
       <div class="event-details" aria-label="Domingo, dia 24, as 18 horas">
-        <span class="event-details__item">DOMINGO</span>
-        <span class="event-details__number">24</span>
-        <span class="event-details__item">18 HORAS</span>
+        <span class="event-details__item">Outubro </span>
+        <span class="event-details__number">04</span>
+        <span class="event-details__item">às 14:30</span>
       </div>
     </section>
 
