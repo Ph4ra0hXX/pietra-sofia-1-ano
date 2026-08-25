@@ -10,6 +10,11 @@ const normalizedGuestName = computed(() => guestName.value.trim());
 const musicButtonLabel = computed(() =>
   isMusicPlaying.value ? "Pausar musica" : "Continuar musica",
 );
+const whatsappConfirmationUrl = computed(() => {
+  const message = `Confirmo minha presen\u00e7a, ${normalizedGuestName.value}`;
+
+  return `https://wa.me/558897236986?text=${encodeURIComponent(message)}`;
+});
 
 function syncMusicState() {
   const music = partyMusic.value;
@@ -280,11 +285,16 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
       </div>
 
       <div class="party-actions" aria-label="Acoes da festa">
-        <button class="party-actions__button" type="button">
+        <a
+          class="party-actions__button"
+          :href="whatsappConfirmationUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <span class="party-actions__button-label">
             Confirmar presen&ccedil;a
           </span>
-        </button>
+        </a>
         <a
           class="party-actions__button"
           href="https://maps.app.goo.gl/S4mZnkeiPfG3exJL7"
