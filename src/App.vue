@@ -3,22 +3,62 @@ import { computed, ref } from "vue";
 
 const guestName = ref("");
 const hasEntered = ref(false);
+const isMusicPlaying = ref(false);
 const partyMusic = ref(null);
 
 const normalizedGuestName = computed(() => guestName.value.trim());
+const musicButtonLabel = computed(() =>
+  isMusicPlaying.value ? "Pausar musica" : "Continuar musica",
+);
+
+function syncMusicState() {
+  const music = partyMusic.value;
+
+  isMusicPlaying.value = Boolean(music && !music.paused && !music.ended);
+}
+
+function playPartyMusic({ restart = false } = {}) {
+  const music = partyMusic.value;
+
+  if (!music) {
+    return;
+  }
+
+  if (restart) {
+    music.currentTime = 0;
+  }
+
+  const playRequest = music.play();
+
+  isMusicPlaying.value = true;
+
+  if (playRequest) {
+    playRequest.then(syncMusicState).catch(syncMusicState);
+  }
+}
+
+function toggleMusic() {
+  const music = partyMusic.value;
+
+  if (!music) {
+    return;
+  }
+
+  if (!music.paused) {
+    music.pause();
+    syncMusicState();
+    return;
+  }
+
+  playPartyMusic();
+}
 
 function enterParty() {
   if (!normalizedGuestName.value) {
     return;
   }
 
-  const music = partyMusic.value;
-
-  if (music) {
-    music.currentTime = 0;
-    void music.play();
-  }
-
+  playPartyMusic({ restart: true });
   hasEntered.value = true;
 }
 
@@ -104,7 +144,16 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
     class="birthday-background"
     aria-label="Fundo decorativo laranja com sementes pretas"
   >
-    <audio ref="partyMusic" src="/musica.webm" preload="auto" loop></audio>
+    <audio
+      ref="partyMusic"
+      src="/musica.webm"
+      preload="auto"
+      loop
+      @play="syncMusicState"
+      @playing="syncMusicState"
+      @pause="syncMusicState"
+      @ended="syncMusicState"
+    ></audio>
 
     <div class="birthday-background__texture" aria-hidden="true"></div>
     <div class="falling-leaves" aria-hidden="true">
@@ -243,6 +292,25 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
         </button>
         <button class="party-actions__button" type="button">
           <span class="party-actions__button-label"> Dicas de presentes </span>
+        </button>
+
+        <button
+          class="party-actions__button music-toggle"
+          type="button"
+          :aria-pressed="isMusicPlaying"
+          :aria-label="musicButtonLabel"
+          @click="toggleMusic"
+        >
+          <span class="music-toggle__icon" aria-hidden="true">
+            <span v-if="isMusicPlaying" class="music-toggle__pause"></span>
+            <span v-else class="music-toggle__play"></span>
+          </span>
+          <span v-if="isMusicPlaying" class="party-actions__button-label">
+            Pausar m&uacute;sica
+          </span>
+          <span v-else class="party-actions__button-label">
+            Continuar m&uacute;sica
+          </span>
         </button>
       </div>
 
@@ -667,6 +735,79 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   outline-offset: 4px;
 }
 
+.music-toggle {
+  grid-column: 2;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: min(320px, 90vw);
+  min-height: clamp(50px, 5vw, 60px);
+  margin: 0;
+  padding: 9px 18px 10px 12px;
+  color: #fff9e8;
+  background: #00a9b7;
+  border: 4px solid #080808;
+  border-radius: 999px;
+  box-shadow:
+    0 6px 0 #00606b,
+    0 9px 0 rgb(0 0 0 / 12%);
+}
+
+.music-toggle:hover {
+  background: #13c2cf;
+  box-shadow:
+    0 4px 0 #00606b,
+    0 7px 0 rgb(0 0 0 / 10%);
+}
+
+.music-toggle:active {
+  box-shadow:
+    0 1px 0 #00606b,
+    0 3px 0 rgb(0 0 0 / 8%);
+}
+
+.music-toggle .party-actions__button-label {
+  font-size: 19px;
+}
+
+.music-toggle__icon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  background: #fff9e8;
+  border: 3px solid #080808;
+  border-radius: 50%;
+  box-shadow: inset 0 -3px 0 rgb(0 0 0 / 10%);
+}
+
+.music-toggle__play {
+  width: 0;
+  height: 0;
+  margin-left: 3px;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 12px solid #00717b;
+}
+
+.music-toggle__pause {
+  display: flex;
+  gap: 4px;
+}
+
+.music-toggle__pause::before,
+.music-toggle__pause::after {
+  display: block;
+  width: 5px;
+  height: 16px;
+  background: #00717b;
+  border-radius: 3px;
+  content: "";
+}
+
 .party-characters {
   display: flex;
   align-items: flex-start;
@@ -841,6 +982,11 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
     box-shadow:
       0 6px 0 #9e005f,
       0 8px 0 rgb(0 0 0 / 10%);
+  }
+
+  .music-toggle {
+    grid-column: 1;
+    width: min(320px, 100%);
   }
 
   .party-characters {
