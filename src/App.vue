@@ -3,12 +3,20 @@ import { computed, ref } from "vue";
 
 const guestName = ref("");
 const hasEntered = ref(false);
+const partyMusic = ref(null);
 
 const normalizedGuestName = computed(() => guestName.value.trim());
 
 function enterParty() {
   if (!normalizedGuestName.value) {
     return;
+  }
+
+  const music = partyMusic.value;
+
+  if (music) {
+    music.currentTime = 0;
+    void music.play();
   }
 
   hasEntered.value = true;
@@ -96,6 +104,8 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
     class="birthday-background"
     aria-label="Fundo decorativo laranja com sementes pretas"
   >
+    <audio ref="partyMusic" src="/musica.webm" preload="auto" loop></audio>
+
     <div class="birthday-background__texture" aria-hidden="true"></div>
     <div class="falling-leaves" aria-hidden="true">
       <span
