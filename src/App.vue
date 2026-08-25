@@ -771,7 +771,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
 }
 
 .music-toggle .party-actions__button-label {
-  font-size: 19px;
+  font-size: 17px;
 }
 
 .music-toggle__icon {
