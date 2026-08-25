@@ -466,7 +466,9 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   min-height: 58px;
   padding: 9px 16px 11px;
   color: #111111;
-  font: 22px/1.15 "Pietra Sofia", cursive;
+  font:
+    22px/1.15 "Pietra Sofia",
+    cursive;
   text-align: center;
   background: #ffffff;
   border: 4px solid #111111;
@@ -492,7 +494,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   margin-bottom: clamp(4px, 1.3vw, 12px);
   color: #ffffff;
   font-family: "Pietra Sofia Title", cursive;
-  font-size: clamp(24px, 4vw, 38px);
+  font-size: clamp(35px, 4vw, 38px);
   line-height: 1;
   text-align: center;
   text-transform: uppercase;
@@ -681,15 +683,10 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   height: auto;
   object-fit: contain;
   user-select: none;
-  filter:
-    drop-shadow(3px 0 0 #fff)
-    drop-shadow(-3px 0 0 #fff)
-    drop-shadow(0 3px 0 #fff)
-    drop-shadow(0 -3px 0 #fff)
-    drop-shadow(2px 2px 0 #fff)
-    drop-shadow(-2px 2px 0 #fff)
-    drop-shadow(2px -2px 0 #fff)
-    drop-shadow(-2px -2px 0 #fff)
+  filter: drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff)
+    drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff)
+    drop-shadow(2px 2px 0 #fff) drop-shadow(-2px 2px 0 #fff)
+    drop-shadow(2px -2px 0 #fff) drop-shadow(-2px -2px 0 #fff)
     drop-shadow(0 9px 0 rgb(76 31 13 / 15%));
   transform: translateY(var(--character-y));
   transform-origin: 50% 70%;
@@ -717,8 +714,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   }
 
   50% {
-    transform: translate3d(0, calc(var(--character-y) + 2px), 0)
-      rotate(1.1deg);
+    transform: translate3d(0, calc(var(--character-y) + 2px), 0) rotate(1.1deg);
   }
 }
 
