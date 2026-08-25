@@ -88,7 +88,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
     bottom: `${-18 + row * 6}px`,
     depth: `${1 + row}`,
     width: `${7 + ((index * 5) % 7)}px`,
-    height: `${62 + row * 16 + ((index * 19) % 64)}px`,
+    height: `${54 + row * 13 + ((index * 19) % 54)}px`,
     lean: `${-12 + ((index * 17) % 25)}deg`,
     sway: `${7 + ((index * 11) % 9)}deg`,
     duration: `${2.25 + ((index * 7) % 10) / 10}s`,
@@ -724,7 +724,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   bottom: 0;
   left: 0;
   z-index: 4;
-  height: clamp(128px, 24vh, 230px);
+  height: clamp(112px, 20vh, 200px);
   overflow: hidden;
   pointer-events: none;
 }
@@ -812,7 +812,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   }
 
   .grass-footer {
-    height: clamp(122px, 21vh, 190px);
+    height: clamp(106px, 18vh, 166px);
   }
 
   .party-header {
