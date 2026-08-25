@@ -164,6 +164,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   <main
     class="birthday-background"
     aria-label="Fundo decorativo laranja com sementes pretas"
+    @keyup.escape="closeGiftModal"
   >
     <audio
       ref="partyMusic"
@@ -325,6 +326,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
           class="party-actions__button"
           type="button"
           aria-haspopup="dialog"
+          aria-controls="gift-modal"
           :aria-expanded="isGiftModalOpen"
           @click="openGiftModal"
         >
@@ -351,38 +353,6 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
         </button>
       </div>
 
-      <div
-        v-if="isGiftModalOpen"
-        class="gift-modal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="gift-modal-title"
-        @click.self="closeGiftModal"
-      >
-        <div class="gift-modal__panel">
-          <button
-            class="gift-modal__close"
-            type="button"
-            aria-label="Fechar dicas de presentes"
-            @click="closeGiftModal"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h2 id="gift-modal-title" class="gift-modal__title">
-            Sugest&otilde;es de presentes
-          </h2>
-          <ul class="gift-modal__list">
-            <li
-              v-for="suggestion in giftSuggestions"
-              :key="suggestion"
-              class="gift-modal__item"
-            >
-              {{ suggestion }}
-            </li>
-          </ul>
-        </div>
-      </div>
-
       <div class="party-characters" aria-hidden="true">
         <img
           class="party-characters__image party-characters__image--dino"
@@ -396,6 +366,39 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
         />
       </div>
     </section>
+
+    <div
+      id="gift-modal"
+      v-if="isGiftModalOpen"
+      class="gift-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="gift-modal-title"
+      @click.self="closeGiftModal"
+    >
+      <div class="gift-modal__panel">
+        <button
+          class="gift-modal__close"
+          type="button"
+          aria-label="Fechar dicas de presentes"
+          @click="closeGiftModal"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h2 id="gift-modal-title" class="gift-modal__title">
+          Sugest&otilde;es de presentes
+        </h2>
+        <ul class="gift-modal__list">
+          <li
+            v-for="suggestion in giftSuggestions"
+            :key="suggestion"
+            class="gift-modal__item"
+          >
+            {{ suggestion }}
+          </li>
+        </ul>
+      </div>
+    </div>
 
     <!--
     <footer class="grass-footer" aria-hidden="true">
