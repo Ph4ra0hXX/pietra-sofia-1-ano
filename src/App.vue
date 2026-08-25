@@ -11,7 +11,7 @@ const musicButtonLabel = computed(() =>
   isMusicPlaying.value ? "Pausar musica" : "Continuar musica",
 );
 const whatsappConfirmationUrl = computed(() => {
-  const message = `Confirmo minha presen\u00e7a, ${normalizedGuestName.value}`;
+  const message = `Confirmo minha presen\u00e7a, ${normalizedGuestName.value}.`;
 
   return `https://wa.me/558897236986?text=${encodeURIComponent(message)}`;
 });
