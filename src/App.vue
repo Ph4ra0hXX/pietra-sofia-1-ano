@@ -1,4 +1,19 @@
 <script setup>
+import { computed, ref } from "vue";
+
+const guestName = ref("");
+const hasEntered = ref(false);
+
+const normalizedGuestName = computed(() => guestName.value.trim());
+
+function enterParty() {
+  if (!normalizedGuestName.value) {
+    return;
+  }
+
+  hasEntered.value = true;
+}
+
 const leafColors = [
   ["#78b942", "#2e6532"],
   ["#59a83a", "#214f2b"],
@@ -135,7 +150,36 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
       </span>
     </div>
 
-    <section class="party-header" aria-label="Informacoes da festa">
+    <section
+      v-if="!hasEntered"
+      class="entry-gate"
+      aria-label="Entrada do convite"
+    >
+      <form class="entry-gate__form" @submit.prevent="enterParty">
+        <label class="entry-gate__label" for="guest-name">
+          Digite seu nome
+        </label>
+        <input
+          id="guest-name"
+          v-model="guestName"
+          class="entry-gate__input"
+          name="guest-name"
+          type="text"
+          autocomplete="name"
+          placeholder="Seu nome"
+          required
+        />
+        <button class="party-actions__button entry-gate__button" type="submit">
+          <span class="party-actions__button-label">Entrar</span>
+        </button>
+      </form>
+    </section>
+
+    <section v-else class="party-header" aria-label="Informacoes da festa">
+      <p v-if="normalizedGuestName" class="guest-greeting">
+        Oi, {{ normalizedGuestName }}!
+      </p>
+
       <div
         class="name-bone"
         role="img"
@@ -371,6 +415,80 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   left: 50%;
   width: min(88vw, 760px);
   transform: translateX(-50%);
+}
+
+.entry-gate {
+  position: absolute;
+  z-index: 5;
+  top: 46%;
+  left: 50%;
+  width: min(88vw, 430px);
+  transform: translate(-50%, -50%);
+}
+
+.entry-gate__form {
+  display: grid;
+  gap: 16px;
+  justify-items: stretch;
+  padding: clamp(22px, 5vw, 34px);
+  background: rgb(255 249 232 / 92%);
+  border: 5px solid #080808;
+  border-radius: 10px;
+  box-shadow:
+    0 10px 0 rgb(77 32 12 / 22%),
+    0 18px 22px rgb(77 32 12 / 14%);
+}
+
+.entry-gate__label {
+  color: #ed008e;
+  font-family: "Pietra Sofia Title", cursive;
+  font-size: clamp(32px, 8vw, 52px);
+  line-height: 0.95;
+  text-align: center;
+  text-transform: uppercase;
+  paint-order: stroke;
+  -webkit-text-stroke: 5px #ffffff;
+  filter: drop-shadow(0 4px 0 rgb(0 0 0 / 14%));
+}
+
+.entry-gate__input {
+  width: 100%;
+  min-height: 58px;
+  padding: 9px 16px 11px;
+  color: #111111;
+  font: 22px/1.15 "Pietra Sofia", cursive;
+  text-align: center;
+  background: #ffffff;
+  border: 4px solid #111111;
+  border-radius: 10px;
+  box-shadow: inset 0 3px 0 rgb(0 0 0 / 10%);
+}
+
+.entry-gate__input::placeholder {
+  color: rgb(17 17 17 / 45%);
+}
+
+.entry-gate__input:focus {
+  outline: 4px solid #ed008e;
+  outline-offset: 3px;
+}
+
+.entry-gate__button {
+  width: 100%;
+  margin-top: 2px;
+}
+
+.guest-greeting {
+  margin-bottom: clamp(4px, 1.3vw, 12px);
+  color: #ffffff;
+  font-family: "Pietra Sofia Title", cursive;
+  font-size: clamp(24px, 4vw, 38px);
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  paint-order: stroke;
+  -webkit-text-stroke: 5px #080808;
+  filter: drop-shadow(0 4px 0 rgb(0 0 0 / 14%));
 }
 
 .name-bone {
@@ -665,6 +783,26 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
 @media (max-width: 600px) {
   .birthday-background__texture {
     background-size: 255px 255px;
+  }
+
+  .entry-gate {
+    top: 43%;
+    width: min(90vw, 360px);
+  }
+
+  .entry-gate__form {
+    gap: 13px;
+    padding: 22px 18px 24px;
+  }
+
+  .entry-gate__label {
+    font-size: clamp(30px, 10vw, 42px);
+    -webkit-text-stroke-width: 4px;
+  }
+
+  .entry-gate__input {
+    min-height: 54px;
+    font-size: 20px;
   }
 
   .grass-footer {
