@@ -285,11 +285,16 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
             Confirmar presen&ccedil;a
           </span>
         </button>
-        <button class="party-actions__button" type="button">
+        <a
+          class="party-actions__button"
+          href="https://maps.app.goo.gl/S4mZnkeiPfG3exJL7"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <span class="party-actions__button-label">
             Localiza&ccedil;&atilde;o da festa
           </span>
-        </button>
+        </a>
         <button class="party-actions__button" type="button">
           <span class="party-actions__button-label"> Dicas de presentes </span>
         </button>
@@ -693,6 +698,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   line-height: 1;
   letter-spacing: 0.4px;
   text-align: center;
+  text-decoration: none;
   text-transform: uppercase;
   overflow-wrap: anywhere;
   background: #ed008e;
