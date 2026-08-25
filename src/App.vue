@@ -328,6 +328,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
       </div>
     </section>
 
+    <!--
     <footer class="grass-footer" aria-hidden="true">
       <div class="grass-footer__field">
         <span
@@ -350,6 +351,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
         ></span>
       </div>
     </footer>
+    -->
   </main>
 </template>
 
