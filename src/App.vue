@@ -4,7 +4,15 @@ import { computed, ref } from "vue";
 const guestName = ref("");
 const hasEntered = ref(false);
 const isMusicPlaying = ref(false);
+const isGiftModalOpen = ref(false);
 const partyMusic = ref(null);
+
+const giftSuggestions = [
+  "Roupa 1 ano",
+  "Brinquedos educativos",
+  "Itens de higiene",
+  "Cal\u00e7ados tam 20/21",
+];
 
 const normalizedGuestName = computed(() => guestName.value.trim());
 const musicButtonLabel = computed(() =>
@@ -65,6 +73,14 @@ function enterParty() {
 
   playPartyMusic({ restart: true });
   hasEntered.value = true;
+}
+
+function openGiftModal() {
+  isGiftModalOpen.value = true;
+}
+
+function closeGiftModal() {
+  isGiftModalOpen.value = false;
 }
 
 const leafColors = [
@@ -305,7 +321,13 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
             Localiza&ccedil;&atilde;o da festa
           </span>
         </a>
-        <button class="party-actions__button" type="button">
+        <button
+          class="party-actions__button"
+          type="button"
+          aria-haspopup="dialog"
+          :aria-expanded="isGiftModalOpen"
+          @click="openGiftModal"
+        >
           <span class="party-actions__button-label"> Dicas de presentes </span>
         </button>
 
@@ -327,6 +349,38 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
             Continuar m&uacute;sica
           </span>
         </button>
+      </div>
+
+      <div
+        v-if="isGiftModalOpen"
+        class="gift-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="gift-modal-title"
+        @click.self="closeGiftModal"
+      >
+        <div class="gift-modal__panel">
+          <button
+            class="gift-modal__close"
+            type="button"
+            aria-label="Fechar dicas de presentes"
+            @click="closeGiftModal"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h2 id="gift-modal-title" class="gift-modal__title">
+            Sugest&otilde;es de presentes
+          </h2>
+          <ul class="gift-modal__list">
+            <li
+              v-for="suggestion in giftSuggestions"
+              :key="suggestion"
+              class="gift-modal__item"
+            >
+              {{ suggestion }}
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div class="party-characters" aria-hidden="true">
@@ -824,6 +878,112 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   background: #00717b;
   border-radius: 3px;
   content: "";
+}
+
+.gift-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgb(17 17 17 / 48%);
+  backdrop-filter: blur(3px);
+}
+
+.gift-modal__panel {
+  position: relative;
+  width: min(90vw, 440px);
+  padding: clamp(24px, 5vw, 34px);
+  color: #111111;
+  background: #fff9e8;
+  border: 5px solid #080808;
+  border-radius: 10px;
+  box-shadow:
+    0 10px 0 rgb(77 32 12 / 28%),
+    0 20px 26px rgb(0 0 0 / 18%);
+}
+
+.gift-modal__close {
+  appearance: none;
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: #ffffff;
+  font: 32px/1 Arial, sans-serif;
+  background: #00a9b7;
+  border: 4px solid #080808;
+  border-radius: 50%;
+  box-shadow: 0 4px 0 #00606b;
+  cursor: pointer;
+  transition:
+    background-color 140ms ease,
+    box-shadow 140ms ease,
+    transform 140ms ease;
+}
+
+.gift-modal__close:hover {
+  background: #13c2cf;
+  box-shadow: 0 2px 0 #00606b;
+  transform: translateY(2px);
+}
+
+.gift-modal__close:focus-visible {
+  outline: 4px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.gift-modal__title {
+  margin: 0 28px 18px 0;
+  color: #ed008e;
+  font-family: "Pietra Sofia Title", cursive;
+  font-size: clamp(32px, 7vw, 46px);
+  font-weight: normal;
+  line-height: 0.95;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  paint-order: stroke;
+  -webkit-text-stroke: 5px #ffffff;
+  filter: drop-shadow(0 4px 0 rgb(0 0 0 / 14%));
+}
+
+.gift-modal__list {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.gift-modal__item {
+  min-height: 48px;
+  padding: 12px 14px;
+  color: #ffffff;
+  font-family: "Pietra Sofia Title", cursive;
+  font-size: clamp(18px, 4.8vw, 24px);
+  line-height: 1;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+  background: #78b942;
+  border: 4px solid #080808;
+  border-radius: 10px;
+  box-shadow: 0 4px 0 #2e6532;
+}
+
+.gift-modal__item:nth-child(2n) {
+  background: #00a9b7;
+  box-shadow: 0 4px 0 #00606b;
+}
+
+.gift-modal__item:nth-child(3n) {
+  background: #ed008e;
+  box-shadow: 0 4px 0 #9e005f;
 }
 
 .party-characters {
