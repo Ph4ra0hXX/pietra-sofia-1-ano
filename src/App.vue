@@ -683,12 +683,12 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   position: relative;
   display: grid;
   place-items: center;
-  min-width: min(100%, 280px);
-  min-height: clamp(50px, 6vw, 64px);
-  padding: 12px clamp(14px, 2vw, 22px) 13px;
+  min-width: min(100%, 250px);
+  min-height: clamp(44px, 5vw, 56px);
+  padding: 9px clamp(12px, 1.8vw, 18px) 10px;
   color: #ffffff;
   font-family: "Pietra Sofia Title", cursive;
-  font-size: clamp(18px, 2.1vw, 25px);
+  font-size: clamp(16px, 1.9vw, 22px);
   font-weight: normal;
   line-height: 1;
   letter-spacing: 0.4px;
@@ -743,11 +743,11 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  width: min(320px, 90vw);
-  min-height: clamp(50px, 5vw, 60px);
+  gap: 8px;
+  width: min(285px, 90vw);
+  min-height: clamp(44px, 4.5vw, 54px);
   margin: 0;
-  padding: 9px 18px 10px 12px;
+  padding: 8px 16px 9px 10px;
   color: #fff9e8;
   background: #00a9b7;
   border: 4px solid #080808;
@@ -778,8 +778,8 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   display: grid;
   flex: 0 0 auto;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   background: #fff9e8;
   border: 3px solid #080808;
   border-radius: 50%;
@@ -790,9 +790,9 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   width: 0;
   height: 0;
   margin-left: 3px;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-left: 12px solid #00717b;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 10px solid #00717b;
 }
 
 .music-toggle__pause {
@@ -803,8 +803,8 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
 .music-toggle__pause::before,
 .music-toggle__pause::after {
   display: block;
-  width: 5px;
-  height: 16px;
+  width: 4px;
+  height: 14px;
   background: #00717b;
   border-radius: 3px;
   content: "";
@@ -978,9 +978,9 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
   }
 
   .party-actions__button {
-    min-height: 60px;
-    padding: 12px 16px 13px;
-    font-size: clamp(18px, 5.2vw, 24px);
+    min-height: 52px;
+    padding: 10px 14px 11px;
+    font-size: clamp(16px, 4.8vw, 22px);
     box-shadow:
       0 6px 0 #9e005f,
       0 8px 0 rgb(0 0 0 / 10%);
@@ -988,7 +988,7 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
 
   .music-toggle {
     grid-column: 1;
-    width: min(320px, 100%);
+    width: min(285px, 100%);
   }
 
   .party-characters {
