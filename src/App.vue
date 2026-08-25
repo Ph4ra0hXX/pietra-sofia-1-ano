@@ -742,12 +742,15 @@ const grassBlades = Array.from({ length: grassBladeCount }, (_, index) => {
 }
 
 .party-actions {
+  position: relative;
+  left: 50%;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: stretch;
   gap: clamp(12px, 2vw, 20px);
   width: min(96vw, 960px);
-  margin: clamp(16px, 2.6vw, 28px) auto 0;
+  margin: clamp(16px, 2.6vw, 28px) 0 0;
+  transform: translateX(-50%);
 }
 
 .party-actions__button {
